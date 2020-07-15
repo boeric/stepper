@@ -2,6 +2,8 @@
 
 **Stepper** is a React component that allows an end-user to step thorough a sequence of pages (for example filling out a questionnaire).
 
+The project uses React **Portals** (https://reactjs.org/docs/portals.html)
+
 The configuration of the **Stepper** is completely data-driven. The React parent component that uses **Stepper** provides a data structure that defines which controls should appear on each **Stepper** page. Currently four types of controls are supported:
 - **select** (a control using the `select` element)
 - **radio** (a control consisting of a group of `radio` buttons)
