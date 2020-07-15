@@ -1,8 +1,6 @@
 ## Stepper
 
-**Stepper** is a React component that allows an end-user to step thorough a sequence of pages (for example filling out a questionnaire).
-
-The project uses React **Portals** (https://reactjs.org/docs/portals.html)
+**Stepper** is a React component that allows an end-user to step thorough a sequence of pages (for example filling out a questionnaire). The project uses React Portals.
 
 The configuration of the **Stepper** is completely data-driven. The React parent component that uses **Stepper** provides a data structure that defines which controls should appear on each **Stepper** page. Currently four types of controls are supported:
 - **select** (a control using the `select` element)
@@ -13,7 +11,9 @@ The configuration of the **Stepper** is completely data-driven. The React parent
 
 The configuration data structure contains a **`pages`** array. Each element in the array specifies the content of each **Stepper** page. Multiple controls can be placed on each **Stepper** page. Aside from the configuaration information for a control, there is also the `name` property. The **Stepper** will use this `name` property and associated control value to format the payload provided to the parent when the user clicks **Submit**.
 
-**TODO**: Support **required** fields (and disallow page advance and submission until the required fields are updated)
+**TODO**: 
+- Support **required** fields (and disallow page advance and submission until the required fields are updated)
+- Support **branching** so different paths are taken (and different pages are shown) based on the user's action
 
 Example **Screenshots** from **Stepper**:
 
