@@ -1,0 +1,63 @@
+{
+  "name": "zero-config-react-webapp",
+  "version": "1.0.0",
+  "description": "Template for React app using Webpack, Babel, Eslint & D3 with ES2018 features enabled",
+  "main": "index.js",
+  "keywords": [
+    "react app",
+    "template",
+    "eslint",
+    "airbnb",
+    "no config",
+    "zero config"
+  ],
+  "author": "Bo Ericsson <bo@boe.net> (https://boeric.github.io)",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "lint": "$(npm bin)/eslint ./src",
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production --devtool none",
+    "deploy": "rsync -rzv --exclude 'node_modules' . username@host:/path-from-user-dir-to-project",
+    "start-dev-server": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start-server": "$(npm bin)/http-server ./dist --port 8000 --utc --log-ip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boeric/zero-config-react-webapp.git"
+  },
+  "homepage": "https://github.com/boeric/zero-config-react-webapp#readme",
+  "bugs": {
+    "url": "https://github.com/boeric/zero-config-react-webapp/issues"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.3",
+    "http-server": "^0.12.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-transform-runtime": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
+    "babel-preset-airbnb": "^5.0.0",
+    "css-loader": "^3.6.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-react": "^7.20.0",
+    "jest": "^26.0.1",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

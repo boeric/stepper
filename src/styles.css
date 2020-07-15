@@ -1,0 +1,209 @@
+/* styles.css */
+body {
+  font-family: Geneva;
+  margin: 20px;
+}
+div {
+  margin: 0px;
+}
+img {
+  max-height: 48px;
+}
+select {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 10px;
+  height: 36px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 3px;
+}
+option {
+  background-color: white;
+  font-size: 12px
+}
+textarea {
+  width: 100%;
+  resize: none;
+  border-radius: 5px;
+}
+label {
+  margin-left: 5px;
+}
+button {
+  background-color: #ddd;
+  font-family: Geneva;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #ccc;
+}
+button:focus {
+  border: 1px solid #555;
+  outline: none;
+}
+.modal {
+  background-color: white;
+  border-radius: 5px;
+  bottom: 0px;
+  box-shadow: 0 5px 10px 2px rgba(195,192,192,.5);
+  height: 300px;
+  left: 0px;
+  margin: auto;
+  opacity: 1;
+  padding: 20px;
+  position: absolute;
+  right: 0px;
+  text-align: center;
+  top: 0px;
+  width: 540px;
+}
+.feedback-button {
+  border-radius: 6px 6px 0px 0px;
+  border: none;
+  height: 28px;
+  letter-spacing: 1px;
+  transform: rotate(270deg);
+  width: 100px;
+  font-family: Geneva;
+}
+.feedback-button-container {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  width: 60px;
+  height: 80px;
+}
+.response-wrapper {
+  font-size: 14px;
+}
+.response-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.response-content {
+  font-family: Geneva;
+  border: none;
+  font-size: 13px;
+}
+.instructions {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.modal-background {
+  background-color: black;
+  bottom: 0px;
+  height: 100%;
+  left: 0px;
+  margin: auto;
+  opacity: 0.5;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+}
+.cancel-button {
+  background-color: white;
+  border: none;
+  font-family: Geneva;
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+.cancel-button:focus {
+  background-color: white;
+  border: none;
+}
+.cancel-button-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.logo-container {
+  width: 100%;
+  display: flex;
+}
+.step-button-container {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 35px;
+  left: 100px;
+  right: 100px;
+}
+button.step-button {
+  margin: 10px;
+  height: 30px;
+  width: 100px;
+  background-color: #ddd;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+button.step-button:hover {
+  background-color: #ccc;
+}
+button.step-button:focus {
+  border: none;
+}
+button.step-button.submit-button {
+  background-color: #2a2;
+  color: white;
+}
+button.step-button.submit-button:hover {
+  background-color: #7a7;
+  color: white;
+}
+.page-indicator-container {
+  font-size: 12px;
+  position: absolute;
+  bottom: 20px;
+  left: 100px;
+  right: 100px;
+}
+.legend {
+  font-size: 12px;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+.comments {
+  font-family: Geneva;
+  font-size: 12px;
+  border: 1px solid lightgray;
+}
+.comments:focus {
+  outline: none;
+}
+.comments-characters-left {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 10px;
+}
+.alt-radio-button {
+  width: 30px;
+  height: 30px;
+  background-color: #eaeaea;
+  border: none;
+  border-radius: 5px;
+  font-size: 10px;
+}
+.alt-radio-button.alt-radio-button-selected {
+  background-color: #ccc;
+}
+.alt-radio-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.alt-radio-button-explain-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.alt-radio-button-explain {
+  font-size: 10px;
+}
+.radio-button-container {
+  font-size: 13px;
+  text-align: start;
+}
