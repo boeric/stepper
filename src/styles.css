@@ -1,4 +1,5 @@
 /* styles.css */
+
 body {
   font-family: Geneva;
   margin: 20px;
@@ -41,6 +42,18 @@ button:hover {
 button:focus {
   border: 1px solid #555;
   outline: none;
+}
+.modal-background {
+  background-color: black;
+  bottom: 0px;
+  height: 100%;
+  left: 0px;
+  margin: auto;
+  opacity: 0.5;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100%;
 }
 .modal {
   background-color: white;
@@ -90,18 +103,6 @@ button:focus {
   margin-top: 50px;
   margin-bottom: 20px;
   font-size: 13px;
-}
-.modal-background {
-  background-color: black;
-  bottom: 0px;
-  height: 100%;
-  left: 0px;
-  margin: auto;
-  opacity: 0.5;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  width: 100%;
 }
 .cancel-button {
   background-color: white;

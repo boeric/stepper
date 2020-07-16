@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Stepper from './Stepper.jsx';
 
-const stepperData = {
+const stepperConfig = {
   nextStr: 'Next',
   backStr: 'Back',
   submitStr: 'Submit',
@@ -13,14 +13,15 @@ const stepperData = {
     comment: 'Page 1',
     controls: [{
       type: 'alt-radio',
-      legend: 'How likely are you to recommend us to friend or colleague?',
-      required: true,
       name: 'likely-to-recommend',
+      legend: 'How likely are you to recommend us to friend or colleague?',
     }],
   }, {
     comment: 'Page 2',
     controls: [{
       type: 'select',
+      name: 'visit-objective',
+      legend: 'What was your objective with your visit today?',
       options: [
         'Choose...',
         'Browse new arrivals',
@@ -29,10 +30,10 @@ const stepperData = {
         'Contact customer service',
         'Return or exchance an item',
       ],
-      legend: 'What was your objective with your visit today?',
-      name: 'visit-objective',
     }, {
       type: 'select',
+      name: 'product-of-interest',
+      legend: 'Which product category is of most interest to you?',
       options: [
         'Choose...',
         'Dress shoes',
@@ -42,13 +43,13 @@ const stepperData = {
         'Sandals',
         'Sneakers',
       ],
-      legend: 'Which product category is of most interest to you?',
-      name: 'product-of-interest',
     }],
   }, {
     comment: 'Page 3',
     controls: [{
       type: 'radio',
+      name: 'easy-to-accomplish-goal',
+      legend: 'How easy was it to accomplish that goal?',
       options: [
         'Very difficult',
         'Difficult',
@@ -56,17 +57,15 @@ const stepperData = {
         'Easy',
         'Very Easy',
       ],
-      legend: 'How easy was it to accomplish that goal?',
-      name: 'easy-to-accomplish-goal',
     }],
   }, {
     comment: 'Page 4',
     controls: [{
       type: 'textarea',
-      placeholder: 'Your answer',
-      maxChars: 1000,
-      legend: 'Please share your feedback',
       name: 'feedback',
+      legend: 'Please share your feedback',
+      maxChars: 1000,
+      placeholder: 'Your answer',
     }],
   }],
 };
@@ -81,7 +80,7 @@ export default class App extends Component {
       stepperResponse: null,
     };
 
-    // Bind this to event handler
+    // Bind 'this' to event handlers
     this.clickHandler = this.clickHandler.bind(this);
     this.closeHandler = this.closeHandler.bind(this);
   }
@@ -107,12 +106,13 @@ export default class App extends Component {
     const { title } = this.props;
     const { showStepper, stepperResponse } = this.state;
 
-    const stepperResponseDiv = stepperResponse === null
+    // Optionally, generate the response container (happens whne Stepper is done)
+    const stepperResponseContainer = stepperResponse === null
       ? null
       : (
         <div className="response-wrapper">
           <div className="response-title">
-            Response from stepper:
+            Response from Stepper:
           </div>
           <textarea
             className="response-content"
@@ -123,13 +123,14 @@ export default class App extends Component {
         </div>
       );
 
+    // Render the app
     return (
       <div>
         <div>{title}</div>
         <div className="instructions">
           Click Feedback at the right to start the Stepper
         </div>
-        {stepperResponseDiv}
+        {stepperResponseContainer}
         <div className="feedback-button-container">
           <button
             className="feedback-button"
@@ -141,7 +142,7 @@ export default class App extends Component {
         { showStepper
           ? (
             <Stepper
-              data={stepperData}
+              data={stepperConfig}
               onClose={this.closeHandler}
             />
           )

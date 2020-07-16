@@ -14,7 +14,7 @@ export default class Stepper extends Component {
     const { data } = props;
     const { pages = [] } = data;
 
-    // Validate data (for now, only the pages array size)
+    // Validate data (for now, only validate the pages array size)
     // TODO: complete input validation
     const error = pages.length === 0;
 
@@ -40,26 +40,30 @@ export default class Stepper extends Component {
     this.state = {
       controlState,
       currentPage: 0,
+      error,
       innerContainer,
       outerContainer,
       totalPages: pages.length,
-      error,
     };
 
-    // Bind this to event handlers
-    this.prevPage = this.prevPage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
+    // Bind 'this' to event handlers
     this.cancelHandler = this.cancelHandler.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
   }
 
+  // Append the inner container (modal) to the outer container
   componentDidMount() {
     const { innerContainer, outerContainer } = this.state;
+
     outerContainer.appendChild(innerContainer);
   }
 
+  // Remove the inner container (modal) from the outer container
   componentWillUnmount() {
     const { innerContainer, outerContainer } = this.state;
+
     outerContainer.removeChild(innerContainer);
   }
 
@@ -73,11 +77,10 @@ export default class Stepper extends Component {
 
   // Go to next page
   nextPage() {
-    const { data } = this.props;
-    const { pages } = data;
+    const { pages } = this.props.data;
     const { currentPage } = this.state;
-
     const newPage = Math.min(currentPage + 1, pages.length - 1);
+
     this.setState({ currentPage: newPage });
   }
 
@@ -85,23 +88,28 @@ export default class Stepper extends Component {
   submitHandler() {
     const { onClose } = this.props;
     const { controlState } = this.state;
+
     onClose(controlState);
   }
 
   // Exit the Stepper, and provide nothing to the parent (as the user is cancelling the Stepper)
   cancelHandler() {
     const { onClose } = this.props;
+
     onClose();
   }
 
-  // Generate markup for a radio button control
+  // Generate markup for a radio button control group
   generateRadioMarkup(d) {
     const { controlState } = this.state;
     const { legend, name, options = [] } = d;
 
+    // Create radio buttons
     const radioButtons = options.map((option, i) => {
+      // Determine selected state of this radio button
       const selected = controlState[name] === option;
 
+      // Return the radio button
       return (
         <div key={i}>
           <input
@@ -121,6 +129,7 @@ export default class Stepper extends Component {
       );
     });
 
+    // Return the radio button container
     return (
       <div>
         <div className="legend">
@@ -138,17 +147,25 @@ export default class Stepper extends Component {
     const { controlState } = this.state;
     const { legend, name } = d;
 
-    // Generate 11 buttons
+    // Generate 11 elem array with values 0 - 10 (Would be a one-liner in d3 - d3.range...
     const range = [];
     // eslint-disable-next-line no-plusplus
-    for (let i = 0; i <= 10; i++) { range.push(i); }
+    for (let i = 0; i <= 10; i++) {
+      range.push(i);
+    }
+
+    // Generate 11 buttons
+    // TODO: allow any number of buttons, within reason...
     const altRadioButtons = range.map((option) => {
+      // Determine selected state of this button
       const selected = option === controlState[name]
         ? 'alt-radio-button-selected'
         : '';
 
+      // Set the css class for this button
       const classNames = `alt-radio-button ${selected}`;
 
+      // Return the button
       return (
         <button
           className={classNames}
@@ -163,6 +180,7 @@ export default class Stepper extends Component {
       );
     });
 
+    // Return the button container
     return (
       <div>
         <div className="legend">
@@ -186,6 +204,7 @@ export default class Stepper extends Component {
     const value = controlState[name] || '';
     const remainingChars = maxChars - value.length;
 
+    // Return the textarea container
     return (
       <div>
         <div className="legend">
@@ -196,12 +215,13 @@ export default class Stepper extends Component {
             className="comments"
             onChange={(evt) => {
               const { value: textAreaValue } = evt.target;
+
               controlState[name] = textAreaValue;
               this.setState({ controlState });
             }}
+            placeholder="Your answer"
             rows={5}
             value={value}
-            placeholder="Your answer"
           >
           </textarea>
         </div>
@@ -220,6 +240,7 @@ export default class Stepper extends Component {
     const { legend, name, options } = d;
     const value = controlState[name] || options[0];
 
+    // Generate option elements
     const optionElems = options.map((option, i) => (
       <option
         key={i} // Ok to use array index as key here as the array is static
@@ -229,6 +250,7 @@ export default class Stepper extends Component {
       </option>
     ));
 
+    // Return the select container
     return (
       <div>
         <div className="legend">
@@ -250,15 +272,15 @@ export default class Stepper extends Component {
     );
   }
 
-  // Generates markup for the current Stepper page. Please note, multiple controls can be
-  // placed on the same Stepper page
+  // Generate markup for the current Stepper page
+  // Please note: Multiple controls can be placed on the same Stepper page
   generateMarkup(pageNumber) {
     const { data } = this.props;
     const {
       pages,
       nextStr,
       backStr,
-      submitStr
+      submitStr,
     } = data;
     const page = pages[pageNumber];
     const { controls } = page;
@@ -267,7 +289,6 @@ export default class Stepper extends Component {
     // Generate input controls for this Stepper page
     const inputs = controls.reduce((ac, cv) => {
       const { type, name } = cv;
-
       let markup = null;
 
       switch (type) {
@@ -288,6 +309,7 @@ export default class Stepper extends Component {
           console.error(`Invalid type ${type}`);
       }
 
+      // Add this control to inputs
       ac.push((
         <div key={name}>
           { markup }
@@ -327,7 +349,7 @@ export default class Stepper extends Component {
       </div>
     );
 
-    // Back button
+    // Generate the back step button
     const backButton = currentPage === 0
       ? null
       : (
@@ -336,15 +358,17 @@ export default class Stepper extends Component {
         </button>
       );
 
-    // Determine the next and appearande of the 'next' button. If this is the last page,
-    // change next button text to submitStr, change the click handler and change its visual
-    // appearance
+    // Determine the next button and the appearande of the button
+    // If this is the last page
+    //  - change next button text to the value of submitStr
+    //  - change the click handler
+    //  - change its visual appearance (to green bg, with current css)
     const lastPage = pageNumber === pages.length - 1;
     const nextButtonText = lastPage ? submitStr : nextStr;
     const nextButtonClickHandler = lastPage ? this.submitHandler : this.nextPage;
     const nextButtonClassName = `step-button ${lastPage ? 'submit-button' : null}`;
 
-    // Next button
+    // Generate the next step button
     const nextButton = (
       <button
         className={nextButtonClassName}
@@ -355,7 +379,7 @@ export default class Stepper extends Component {
     );
 
     // Wrap the step buttons in a container
-    const buttonContainer = (
+    const stepButtonContainer = (
       <div className="step-button-container">
         {backButton}
         {nextButton}
@@ -371,7 +395,7 @@ export default class Stepper extends Component {
       </div>
     );
 
-    // Return the complete Stepper page
+    // Return this Stepper page
     return (
       <div>
         <div className="modal-background"></div>
@@ -379,7 +403,7 @@ export default class Stepper extends Component {
           {cancelButtonContainer}
           {logoContainer}
           {inputContainer}
-          {buttonContainer}
+          {stepButtonContainer}
           {pageIndicatorContainer}
         </div>
       </div>
@@ -388,7 +412,7 @@ export default class Stepper extends Component {
 
   render() {
     const { currentPage, innerContainer } = this.state;
-    // Use React's createPortal to create the Stepper page
+    // Use React's createPortal to create this Stepper page
     return createPortal(this.generateMarkup(currentPage), innerContainer);
   }
 }
