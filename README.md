@@ -42,7 +42,7 @@ Example **Output** provided by the **Stepper**:
     "easy-to-accomplish-goal": "Difficult"
   },
   {
-    "feedback": "This is free form feedback"
+    "feedback": "Here is some free form feedback..."
   }
 ]
 ```
