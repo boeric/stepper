@@ -1,15 +1,15 @@
 ## Stepper
 
-**Stepper** is a React component that allows an end-user to step thorough a sequence of pages (for example filling out a questionnaire). The project uses React Portals.
+**Stepper** is a React component that allows an end-user to step thorough a sequence of pages, for example when filling out a questionnaire. The project uses React Portals.
 
 The configuration of the **Stepper** is completely data-driven. The React parent component that uses **Stepper** provides a data structure that defines which controls should appear on each **Stepper** page. Currently four types of controls are supported:
 - **select** (a control using the `select` element)
 - **radio** (a control consisting of a group of `radio` buttons)
-- **alt-radio** (a group of `button` elements that behaves as `radio`buttons
+- **alt-radio** (a group of `button` elements that behaves as `radio`buttons)
 - **textarea** (a control using a `textarea` element)
 - Further input control types can easily be added
 
-The configuration data structure contains a **`pages`** array. Each element in the array specifies the content of each **Stepper** page. Multiple controls can be placed on each **Stepper** page. Aside from the configuaration information for a control, there is also the `name` property. The **Stepper** will use this `name` property and associated control value to format the payload provided to the parent when the user clicks **Submit**.
+The configuration data structure contains a **`pages`** array. Each element in the array specifies the content of each **Stepper** page. Multiple controls can be placed on each **Stepper** page. Aside from the configuaration information for a control, there is also the **`name`** property. The **Stepper** will use this **`name`** property and associated control value to format the payload provided to the parent, when the user clicks **Submit**.
 
 **TODO**: 
 - Support **required** fields (and disallow page advance and submission until the required fields are updated)
@@ -26,7 +26,7 @@ Example **Screenshots** from **Stepper**:
 <img width="624" alt="Page4" src="https://user-images.githubusercontent.com/4840824/87597225-49029c00-c6a6-11ea-98d3-e181555a5670.png">
 
 
-Example **Output** provided by the **Stepper**:
+Example **Output** provided by **Stepper**:
 ```
 [
   {
