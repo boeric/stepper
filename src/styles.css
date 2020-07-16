@@ -27,6 +27,8 @@ textarea {
   width: 100%;
   resize: none;
   border-radius: 5px;
+  box-sizing: border-box;
+  padding: 7px;
 }
 label {
   margin-left: 5px;
